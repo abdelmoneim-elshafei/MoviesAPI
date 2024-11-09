@@ -9,10 +9,10 @@ CREATE TABLE actors
     CONSTRAINT pk_actors PRIMARY KEY (id)
 );
 
-CREATE TABLE categories
+CREATE TABLE genres
 (
     id            BIGINT AUTO_INCREMENT NOT NULL,
-    name          VARCHAR(255)          NOT NULL,
+    name          VARCHAR(50)          NOT NULL,
     `description` VARCHAR(255)          NULL,
     created_at    datetime              NULL,
     updated_at    datetime              NULL,
@@ -23,7 +23,7 @@ CREATE TABLE directors
 (
     id         BIGINT AUTO_INCREMENT NOT NULL,
     name       VARCHAR(255)          NULL,
-    briefly    VARCHAR(255)          NULL,
+    briefly    VARCHAR(510)          NULL,
     image      VARCHAR(255)          NULL,
     created_at datetime              NULL,
     updated_at datetime              NULL,
@@ -34,7 +34,7 @@ CREATE TABLE movies
 (
     id           BIGINT AUTO_INCREMENT NOT NULL,
     title        VARCHAR(255)          NOT NULL,
-    synopsis     VARCHAR(255)          NULL,
+    synopsis     VARCHAR(510)          NULL,
     url          VARCHAR(255)          NULL,
     image        VARCHAR(255)          NULL,
     release_date date                  NULL,
@@ -49,7 +49,7 @@ CREATE TABLE series
 (
     id         BIGINT AUTO_INCREMENT NOT NULL,
     name       VARCHAR(255)          NULL,
-    synopsis   VARCHAR(255)          NULL,
+    synopsis   VARCHAR(510)          NULL,
     created_at datetime              NULL,
     updated_at datetime              NULL,
     CONSTRAINT pk_series PRIMARY KEY (id)

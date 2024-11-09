@@ -1,4 +1,7 @@
 package com.noob.moviesapi.repositories;
 
-public interface GenreRepo {
+import com.noob.moviesapi.entities.Genre;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface GenreRepo extends JpaRepository<Genre, Long> {
 }

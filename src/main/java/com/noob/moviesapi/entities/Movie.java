@@ -9,6 +9,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -33,7 +35,7 @@ public class Movie {
     private String synopsis;
     private String url;
     private String image;
-    private Date releaseDate;
+    private LocalDate releaseDate;
     private Float rating;
     private Short runtime;
     @CreationTimestamp

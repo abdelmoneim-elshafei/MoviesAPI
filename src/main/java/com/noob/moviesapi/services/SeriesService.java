@@ -1,4 +1,4 @@
-package com.noob.moviesapi.security;
+package com.noob.moviesapi.services;
 
 public interface SeriesService {
 }

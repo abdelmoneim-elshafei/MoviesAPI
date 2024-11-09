@@ -10,15 +10,3 @@ ALTER TABLE moive_actor
 
 ALTER TABLE moive_actor
     ADD CONSTRAINT fk_moiact_on_movie FOREIGN KEY (movie_id) REFERENCES movies (id);
-
-ALTER TABLE directors
-    MODIFY briefly VARCHAR(255);
-
-ALTER TABLE genres
-    MODIFY name VARCHAR(255);
-
-ALTER TABLE movies
-    MODIFY synopsis VARCHAR(255);
-
-ALTER TABLE series
-    MODIFY synopsis VARCHAR(255);
