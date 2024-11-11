@@ -1,5 +1,6 @@
 package com.noob.moviesapi.services.auth;
 
+import com.noob.moviesapi.dtos.JwtResponse;
 import com.noob.moviesapi.dtos.LoginRequest;
 import com.noob.moviesapi.dtos.SignupRequest;
 import com.noob.moviesapi.entities.auth.AppUser;
@@ -30,15 +31,18 @@ public class LoginSignupSerivce implements Login, Signup {
     private final JwtTokenGeneration jwtTokenGeneration;
 
     @Override
-    public String login(LoginRequest loginRequest) {
+    public JwtResponse login(LoginRequest loginRequest) {
         Authentication authentication = manager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
         );
-
+        authentication.getName();
 //        SecurityContext context = SecurityContextHolder.createEmptyContext();
 //        context.setAuthentication(authentication);
 //        SecurityContextHolder.setContext(context);
-        return jwtTokenGeneration.generateToken(authentication);
+        return JwtResponse.builder()
+                .token(jwtTokenGeneration.generateToken(authentication))
+                .username(authentication.getName())
+                .build();
     }
 
     @Override

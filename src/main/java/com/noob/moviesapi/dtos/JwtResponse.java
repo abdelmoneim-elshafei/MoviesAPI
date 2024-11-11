@@ -1,15 +1,15 @@
 package com.noob.moviesapi.dtos;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 @Data
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class JwtResponse {
     private String token;
+    @Builder.Default
     private String type = "Bearer";
     private String username;
-    private String email;
+//    private String email;
 }

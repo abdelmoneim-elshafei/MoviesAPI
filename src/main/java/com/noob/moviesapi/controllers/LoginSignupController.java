@@ -24,7 +24,7 @@ public class LoginSignupController {
     }
 
     @PostMapping("login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         return new ResponseEntity<>(loginSignupSerivce.login(loginRequest), HttpStatus.OK);
     }
 }
