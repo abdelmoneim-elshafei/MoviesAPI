@@ -4,8 +4,10 @@ import com.noob.moviesapi.exceptions.JwtAuthenticationEntryPoint;
 import com.noob.moviesapi.security.JwtFilter;
 import com.noob.moviesapi.security.JwtTokenGeneration;
 import com.noob.moviesapi.services.auth.UserService;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,17 +20,21 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @RequiredArgsConstructor
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class SecurityConfig {
     private final UserService userService;
     private final JwtTokenGeneration jwtTokenGeneration;
     private final JwtFilter jwtFilter;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+//    private final ApplicationContext context;
+//    private final FilterLoggingFilter filterLoggingFilter;
+//    private final FilterChainProxy filterChainProxy;
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -36,6 +42,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
+//                .addFilterBefore(new FilterLoggingFilter(context), SecurityFilterChain.class)
                 .authorizeHttpRequests(r -> {
                     r.requestMatchers("/signup").permitAll();
                     r.requestMatchers("/login").permitAll();
@@ -65,5 +72,7 @@ public class SecurityConfig {
         registrationBean.setEnabled(false);
         return registrationBean;
     }
+
+
 
 }
